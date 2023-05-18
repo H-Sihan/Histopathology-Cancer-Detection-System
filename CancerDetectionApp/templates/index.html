@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Task', 'Hours per Day'],
+                ['Accuracy',     86],
+                ['Error',      14]
+            ]);
+
+            var options = {
+                title: 'The accuracy of the predicted value will be :',
+                is3D: true,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+            chart.draw(data, options);
+        }
+    </script>
+    <style>
+        .mainBody{
+            margin: 0px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            padding: 0px;
+        }
+        .title{
+            position: absolute;
+            top:0px;
+            left:0px;
+            width: 100%;
+            padding-top:40px;
+            background-color: #40739e;
+            height: 100px;
+            color:#f5f6fa;
+            margin: 0px;
+            text-align: center;
+        }
+        .form{
+            position: absolute;
+            top: 200px;
+            height:200px;
+            left: 30px;
+            right: 0px;
+        }
+        .prediction{
+            padding-top: 20px;
+            color: #f5f6fa;
+            background-color:#718093 ;
+            position: absolute;
+            top: 300px;
+            left:00px;
+            right:0px;
+            height:75px;
+            padding-left: 200px;
+            font-size: 20px;
+            border:1px solid #40739e;
+        }
+        .imageInput{
+            margin-left: 40px;
+            background-color: aqua;
+            height: 100px;
+            width: 600px;
+
+            border-radius: 100px;
+        }
+        input[type="file"] {
+            display: none;
+        }
+         input[type="submit"] {
+            display: none;
+        }
+        .custom-file-upload {
+            border: 2px solid #273c75;
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+            width: 300px;
+        }
+        .submitButton{
+            display: inline-block;
+            cursor: pointer;
+            background-color:#40739e ;
+            color:#f5f6fa;
+            margin-left: 100px;
+            width: 80px;
+            height: 50px;
+            text-align: center;
+            justify-content: center;
+            padding-top: 30px;
+            border-radius: 200px;
+        }
+        .submitButton:hover{
+            background-color: #353b48;
+        }
+        .pieChartContainer{
+            position: absolute;
+            top: 450px;
+            left:15%;
+            width:70%;
+            /*bottom:0px;*/
+            /*left: 0px;*/
+            /*right: 0px;*/
+        }
+    </style>
+    <title>Histopathologic Cancer Detection</title>
+</head>
+<body>
+    <div class="mainBody">
+        <h1 class="title">Histopathologic Cancer Detection</h1>
+        <form method="post" enctype="multipart/form-data">
+            <div class="form">
+                <label class="custom-file-upload">
+                    <input class="imageInput" type="file" name="image"/>
+                    <i class="fa fa-cloud-upload"></i> Upload Image
+                </label>
+                <label class="submitButton">
+                    <input class="predictButton"type="submit" value="Diagnose">
+                    <i class="fa fa-cloud-upload">Diagnose</i>
+                </label>
+
+            </div>
+            <h1 class="prediction" >Prediction : {{prediction}} </h1>
+        </form>
+        <div class="pieChartContainer" id="piechart_3d">
+        </div>
+    </div>
+</body>
+</html>
